@@ -1,4 +1,5 @@
 {
   "mongoLocal": "mongodb://127.0.0.1:27017/moviedb",
-  "mongoUri": "mongodb+srv://akezhanissadilov:akezhan@movierecommendationappc.pecwv2e.mongodb.net/?retryWrites=true&w=majority"
+  "mongoUri": "mongodb+srv://akezhanissadilov:akezhan@movierecommendationappc.pecwv2e.mongodb.net/?retryWrites=true&w=majority",
+  "jwtSecret": "valueOfJwt"
 }

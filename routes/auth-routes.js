@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
 const bcrypt = require('bcrypt')
 const Users = require('../models/Users')
+const {register, login} = require('../services/auth-service')
 
 const router = Router()
 
@@ -12,11 +13,21 @@ router.post('/login',[
     check('password', 'Password should contain at least 8 characters!').isLength({min: 8})
 ], async (req, res) => {
     try {
-        const {email, password} = req.body
-        // Todo: create service for auth...
+        const errors = validationResult(req)
 
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: 'Invalid data!'
+            })
+        }
+
+        const {email, password} = req.body
+        const result = await login({email, password})
+
+        return res.json(result)
     } catch (e) {
-        res.status(500).send({message: e.message})
+        return res.status(500).send({message: e.message})
     }
 })
 
@@ -27,11 +38,21 @@ router.post('/register',[
     check('username', 'Username cannot be so short!').isLength({min: 4})
 ], async (req, res) => {
     try {
-        const {email, password, username} = req.body
-        // Todo: create service for auth...
+        const errors = validationResult(req)
 
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+                message: 'Invalid data!'
+            })
+        }
+
+        const {email, password, username} = req.body
+        await register({email, password, username})
+
+        return res.json({message: 'Registered successfully!'})
     } catch (e) {
-        res.status(500).send({message: e.message})
+        return res.status(500).send({message: e.message})
     }
 })
 

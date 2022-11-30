@@ -1,0 +1,22 @@
+{
+  "name": "movie-recommendation-app",
+  "version": "1.0.0",
+  "description": "The server-side application for Movie Recommendation App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akezhan Issadilov <akezhan.issadilov@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "config": "^3.3.8",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  }
+}

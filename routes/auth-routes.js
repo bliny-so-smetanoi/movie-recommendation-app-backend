@@ -47,8 +47,8 @@ router.post('/register',[
             })
         }
 
-        const {email, password, username} = req.body
-        await register({email, password, username})
+        const {email, password, username, genres} = req.body
+        await register({email, password, username, genres})
 
         return res.json({message: 'Registered successfully!'})
     } catch (e) {

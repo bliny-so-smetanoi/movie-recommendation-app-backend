@@ -6,7 +6,8 @@ const app = express()
 
 app.use(express.json({extended: true}))
 app.use('/api/v1/auth/', require('./routes/auth-routes'))
-
+app.use('/api/v1/user/', require('./routes/user-routes'))
+app.use('/api/v1/movie/', require('./routes/movie-routes'))
 // const connectionString = config.get('mongoUri')
 const connectionString = config.get('mongoLocal')
 

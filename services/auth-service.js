@@ -7,7 +7,7 @@ const generateToken = require('./jwt-service')
 
 async function register(registerDto) {
     try{
-        const {email, username, password} = registerDto
+        const {email, username, password, genres} = registerDto
         const potentialUser = await User.findOne({email})
 
         if(potentialUser) {
@@ -15,7 +15,7 @@ async function register(registerDto) {
         }
 
         const hashed = await bcrypt.hash(password, 12)
-        const user = new User({email, username, password: hashed})
+        const user = new User({email, username, password: hashed, genres})
 
         await user.save()
     } catch (e) {

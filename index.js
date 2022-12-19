@@ -11,6 +11,8 @@ app.use('/api/v1/movie/', require('./routes/movie-routes'))
 const connectionString = config.get('mongoUri')
 // const connectionString = config.get('mongoLocal')
 
+const PORT = process.env.PORT || 3000
+
 async function start() {
     try {
         await mongo.connect(connectionString, {
@@ -22,8 +24,8 @@ async function start() {
         process.exit(1)
     }
 
-    app.listen(3000)
-    console.log('App started at 3000 port')
+    app.listen(PORT)
+    console.log('App started at '+ PORT +' port')
 }
 
 start()

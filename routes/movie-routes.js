@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const Movies = require('../models/Movies')
-
+const axios = require('axios')
 const router = Router()
 // With pagination
 router.get('/:page', async (req,res) => {

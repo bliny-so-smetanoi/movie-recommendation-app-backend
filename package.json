@@ -4,7 +4,8 @@
   "description": "The server-side application for Movie Recommendation App",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "Akezhan Issadilov <akezhan.issadilov@gmail.com>",
   "license": "ISC",

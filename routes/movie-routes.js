@@ -6,7 +6,7 @@ const router = Router()
 router.get('/:page', async (req,res) => {
     try {
         const page = (+req.params.page) - 1
-        const result = await Movies.find().skip(5 * page).limit(5)
+        const result = await Movies.find().skip(5 * page).limit(20)
 
         res.json(result)
     } catch (e) {
@@ -19,7 +19,7 @@ router.get('/search/:title/:page', async (req, res) => {
         const page = (+req.params.page) - 1
         const title = req.params.title
         const regex = new RegExp(title, 'i')
-        const result = await Movies.find({'title': regex}).skip(5 * page).limit(5)
+        const result = await Movies.find({'title': regex}).skip(5 * page).limit(20)
 
         res.json(result)
     } catch (e) {
@@ -34,7 +34,7 @@ router.get('/search/genre/:genre/:page', async (req, res) => {
         const page = (+req.params.page) - 1
         const genre = req.params.genre
         const regex = new RegExp(genre, 'i')
-        const result = await Movies.find({'genres': regex}).skip(5 * page).limit(5)
+        const result = await Movies.find({'genres': regex}).skip(5 * page).limit(20)
 
         res.json(result)
 

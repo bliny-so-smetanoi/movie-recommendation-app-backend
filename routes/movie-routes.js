@@ -28,6 +28,7 @@ router.get('/search/:title/:page', async (req, res) => {
 })
 // Get movie by its id
 
+
 router.get('/search/genre/:genre/:page', async (req, res) => {
     try {
         const page = (+req.params.page) - 1
@@ -43,7 +44,7 @@ router.get('/search/genre/:genre/:page', async (req, res) => {
 
 })
 
-router.get('/search/all/genres/', async (req,res) => {
+router.get('/getgenres/all/genres/', async (req,res) => {
     try {
         const genres = ['Documentary', 'Science Fiction', 'Western', 'Comedy',
             'Foreign', 'Drama', 'Fantasy', 'History', 'TV', 'Adventure', 'Thriller',

@@ -14,11 +14,12 @@ router.get('/:page', async (req,res) => {
     }
 })
 // Search by title
-router.get('/search/:title', async (req, res) => {
+router.get('/search/:title/:page', async (req, res) => {
     try {
+        const page = (+req.params.page) - 1
         const title = req.params.title
         const regex = new RegExp(title, 'i')
-        const result = await Movies.find({'title': regex})
+        const result = await Movies.find({'title': regex}).skip(5 * page).limit(5)
 
         res.json(result)
     } catch (e) {
@@ -27,11 +28,12 @@ router.get('/search/:title', async (req, res) => {
 })
 // Get movie by its id
 
-router.get('/search/genre/:genre', async (req, res) => {
+router.get('/search/genre/:genre/:page', async (req, res) => {
     try {
+        const page = (+req.params.page) - 1
         const genre = req.params.genre
         const regex = new RegExp(genre, 'i')
-        const result = await Movies.find({'genres': regex})
+        const result = await Movies.find({'genres': regex}).skip(5 * page).limit(5)
 
         res.json(result)
 

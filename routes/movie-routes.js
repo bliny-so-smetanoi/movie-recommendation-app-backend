@@ -7,16 +7,55 @@ router.get('/:page', async (req,res) => {
     try {
         const page = (+req.params.page) - 1
         const result = await Movies.find().skip(5 * page).limit(5)
+
         res.json(result)
     } catch (e) {
         res.status(500).json({message: 'Went wrong'})
     }
 })
+// Search by title
+router.get('/search/:title', async (req, res) => {
+    try {
+        const title = req.params.title
+        const regex = new RegExp(title, 'i')
+        const result = await Movies.find({'title': regex})
 
+        res.json(result)
+    } catch (e) {
+        res.status(500).json({message: 'Wrong'})
+    }
+})
+// Get movie by its id
+
+router.get('/search/genre/:genre', async (req, res) => {
+    try {
+        const genre = req.params.genre
+        const regex = new RegExp(genre, 'i')
+        const result = await Movies.find({'genres': regex})
+
+        res.json(result)
+
+    }catch (e) {
+        res.status(500).json({message: 'Wrong'})
+    }
+
+})
+
+router.get('/search/all/genres/', async (req,res) => {
+    try {
+        const genres = ['Documentary', 'Science Fiction', 'Western', 'Comedy',
+            'Foreign', 'Drama', 'Fantasy', 'History', 'TV', 'Adventure', 'Thriller',
+            'Music', 'Action', 'Mystery', 'Horror', 'War', 'Animation', 'Movie',
+            'Romance', 'Family', 'Crime']
+
+        res.json(genres)
+    } catch (e) {
+        res.status(500).json({message: 'Wrong'})
+    }
+})
 router.get('/byid/:id', async (req,res) => {
     try{
         const id = req.params.id
-
         const result = await Movies.findOne({ _id: id})
 
         res.json(result)
